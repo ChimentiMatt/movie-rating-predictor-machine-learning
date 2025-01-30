@@ -19,6 +19,50 @@ It uses **movie ratings data** to train the model and provides a **prediction sc
 
 ---
 
+## 🤖 Machine Learning Models Used
+
+This program utilizes two machine learning models to predict movie ratings:
+
+### 📈 Linear Regression
+
+Linear Regression is a fundamental statistical method used to model the relationship between a dependent variable (rating) and independent variables (movie features and user behavior). It assumes a linear relationship and fits a straight line to minimize errors.
+
+#### ✅ Pros:
+- Easy to interpret  
+- Works well when relationships are linear  
+- Faster training time  
+
+#### ❌ Cons:
+- Limited in handling complex relationships  
+- Sensitive to outliers  
+
+### 🌲 Random Forest Regressor
+
+Random Forest Regressor is an ensemble learning method that builds multiple decision trees and averages their predictions. It improves accuracy and reduces overfitting by randomly selecting subsets of data for training.
+
+#### ✅ Pros:
+- Handles non-linear relationships well  
+- More accurate predictions for complex datasets  
+- Resistant to overfitting  
+
+#### ❌ Cons:
+- Slower training time compared to Linear Regression  
+- Harder to interpret than a single decision tree  
+
+---
+
+## 🔍 What Does This Program Do?
+
+1. Collects and preprocesses movie and rating data  
+2. Extracts relevant features (e.g., user rating history, movie genres, release year)  
+3. Trains either a **Linear Regression** or **Random Forest Regressor** model  
+4. Uses the trained model to predict how a user would rate a specific movie  
+5. Outputs accuracy metrics like **MSE (Mean Squared Error)** and **R² Score**  
+
+By comparing the two models, users can analyze which approach works best for predicting movie ratings.
+
+---
+
 ## ⚡️ Installation Guide
 
 ### 1️⃣ Clone the Repository
