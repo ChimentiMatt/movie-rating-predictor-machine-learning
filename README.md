@@ -1,6 +1,6 @@
 # 🎬 Movie Rating Prediction
 
-This program predicts how a user would rate a given movie using **Machine Learning** models like **Linear Regression** and **Random Forest Regressor**.
+This program predicts how a user would rate a given movie by using **Machine Learning** models **Linear Regression** and **Random Forest Regressor**.
 
 It uses **movie ratings data** to train the model and provides a **prediction score** based on the user's previous ratings.
 
