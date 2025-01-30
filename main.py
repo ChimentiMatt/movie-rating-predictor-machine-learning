@@ -222,6 +222,7 @@ def process_and_output(user_id, movie_id, model_choice, X, y, movies, ratings):
 
     like_accuracy = np.mean(actual_likes == predicted_likes) * 100 # Calculate Accuracy for Like Predictions
 
+    print(f"Model: {model_choice}")
     print(f"Mean Squared Error: {mse:.4f}")
     print(f"R² Score: {r2:.4f}\n")  # Closer to 1 means better model performance
     print("Predicted Rating: {predicted_rating:.2f}")

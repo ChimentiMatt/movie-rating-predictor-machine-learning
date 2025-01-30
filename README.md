@@ -129,16 +129,17 @@ Select a model (1/2) or 'Q' to quit:
 ## 📊 Example Output
 ```
 --------------------------------------------- Results ----------------------------------------------
-User Id: 1 
+User id: 1 
 Movie Title: Toy Story (1995)
-Movie Id: 1
+Movie id: 1
 
 
-Mean Squared Error: 0.6494
-R² Score: 0.4025
+Model: Random Forest Regressor
+Mean Squared Error: 0.0900
+R² Score: 0.9172
 
-Predicted Rating: 4.53
-Prediction Accuracy (Ratings ≥ 2.5): 88.72%
+Predicted Rating: {predicted_rating:.2f}
+Prediction Accuracy (Ratings ≥ 2.5): 97.05%
 ----------------------------------------------------------------------------------------------------
 ```
 
