@@ -129,9 +129,9 @@ Select a model (1/2) or 'Q' to quit:
 ## 📊 Example Output
 ```
 --------------------------------------------- Results ----------------------------------------------
-User id: 1 
+User Id: 1 
 Movie Title: Toy Story (1995)
-Movie id: 1
+Movie Id: 1
 
 
 Mean Squared Error: 0.6494
