@@ -224,7 +224,7 @@ def process_and_output(user_id, movie_id, model_choice, X, y, movies, ratings):
 
     print(f"Mean Squared Error: {mse:.4f}")
     print(f"R² Score: {r2:.4f}\n")  # Closer to 1 means better model performance
-    print(f"Predicted Rating: {predicted_rating:.2f}")
+    print("Predicted Rating: {predicted_rating:.2f}")
     print(f"Prediction Accuracy (Ratings ≥ {LIKE_THRESHOLD}): {like_accuracy:.2f}%")
     print('-' * 100)
 
@@ -232,6 +232,7 @@ def get_valid_user_id(ratings):
     """Prompt user for a valid User ID until a correct one is entered."""
     while True:
         try:
+            print("\nUser Ids can be found in ratings.csv. Valid Ids: 1, 2, 217, 509, 610")
             user_id = int(input("Enter User ID: ").strip())
             if user_id in ratings['userId'].values:
                 return user_id
@@ -244,6 +245,7 @@ def get_valid_movie_id(movies):
     """Prompt user for a valid Movie ID until a correct one is entered."""
     while True:
         try:
+            print("\nMovie IDs be found in movies.csv. Valid Ids: 1, 2, 12, 48, 161918")
             movie_id = int(input("Enter Movie ID: ").strip())
             if movie_id in movies['movieId'].values:
                 return movie_id
