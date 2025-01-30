@@ -1,4 +1,4 @@
-# 🎬 Movie Rating Prediction
+# 🎬 Movie Rating Predictor
 
 This program predicts how a user would rate a given movie by using **Machine Learning** models **Linear Regression** and **Random Forest Regressor**.
 
