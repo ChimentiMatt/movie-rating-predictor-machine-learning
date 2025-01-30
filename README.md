@@ -128,20 +128,17 @@ Select a model (1/2) or 'Q' to quit:
 
 ## 📊 Example Output
 ```
-Running prediction
-User: 1  
-Movie: Toy Story (1995) (ID: 1)  
-Model: Linear Regression
-
-Loading...
-Done Processing
-
 --------------------------------------------- Results ----------------------------------------------
+User id: 1 
+Movie Title: Toy Story (1995)
+Movie id: 1
+
+
 Mean Squared Error: 0.6494
 R² Score: 0.4025
 
-Predicted rating for User 1 on Movie 1: 4.53
-Prediction Accuracy for 'Like' (Ratings ≥ 2.5): 88.72%
+Predicted Rating: 4.53
+Prediction Accuracy (Ratings ≥ 2.5): 88.72%
 ----------------------------------------------------------------------------------------------------
 ```
 

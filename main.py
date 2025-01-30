@@ -45,11 +45,11 @@ def encode_genres(movies):
     encoded_genres_list = []
     
     for genres in movies["genres"]:
-        genres_list = [0] * 19 
+        genres_list = [0] * len(GENRE_NUM_INDEX)
         
         for genre in genres:
             if genre in GENRE_NUM_INDEX:
-                genres_list[GENRE_NUM_INDEX[genre]] = 1  # Set genre index to 1
+                genres_list[GENRE_NUM_INDEX[genre]] = 1
             else:
                 genres_list[-1] = 1  # Mark as "Other (Genre)"
 
@@ -61,7 +61,7 @@ def encode_genres(movies):
     # Merge encoded genres with movies DataFrame
     movies = pd.concat([movies, genre_df], axis=1)
 
-    # Drop the original 'genres' column (optional)
+    # Drop the original 'genres' column
     movies.drop(columns=['genres'], inplace=True)
 
     return movies
@@ -70,16 +70,16 @@ def encode_genres(movies):
 def compute_movie_stats(ratings):
     """Computes average rating and number of ratings for each movie."""
     movie_stats = ratings.groupby('movieId').agg(
-        avg_rating=('rating', 'mean'),  # Average rating per movie
-        num_ratings=('rating', 'count') # Number of ratings per movie
+        avg_rating=('rating', 'mean'),
+        num_ratings=('rating', 'count')
     ).reset_index()
 
     return movie_stats
 
 def extract_year(title):
     """Extracts the release year from the movie title without using regex."""
-    parts = title.strip().split(' ')  # Split by spaces
-    if parts and parts[-1].startswith('(') and parts[-1].endswith(')'):  # Check if last part is in parentheses
+    parts = title.strip().split(' ')
+    if parts and parts[-1].startswith('(') and parts[-1].endswith(')'):
         year_str = parts[-1][1:-1]  # Remove parentheses
         if year_str.isdigit():  # Ensure it's a number
             return int(year_str)
@@ -87,7 +87,7 @@ def extract_year(title):
 
 def merge_movie_data(movies, movie_stats):
     """Merges computed rating statistics into the movies dataset and extracts movie release year."""
-    movies['year'] = movies['title'].apply(extract_year) # 'year' is now a new column in the movies DataFrame
+    movies['year'] = movies['title'].apply(extract_year)
 
     movies = movies.merge(movie_stats, on="movieId", how="left")
 
@@ -211,12 +211,10 @@ def process_and_output(user_id, movie_id, model_choice, X, y, movies, ratings):
     r2 = r2_score(y, y_pred) # R² (R-Squared) is a metric that tells us how well our model explains the variability of the target variable (y).
 
     print('-' * 45, 'Results', '-' * 46)
-    print(f"Mean Squared Error: {mse:.4f}")
-    print(f"R² Score: {r2:.4f}")  # Closer to 1 means better model performance
 
     predicted_rating = predict_user_rating(user_id, movie_id, movies, ratings, model)
 
-    print(f"\nPredicted rating for User {user_id} on Movie {movie_id}: {predicted_rating:.2f}")
+    print(f"User id: {user_id} \nMovie Title: {title}\nMovie id: {movie_id}\n\n")
 
     actual_likes = (y >= LIKE_THRESHOLD).astype(int) # Convert actual ratings to binary (1 = Like, 0 = Dislike)
 
@@ -224,7 +222,10 @@ def process_and_output(user_id, movie_id, model_choice, X, y, movies, ratings):
 
     like_accuracy = np.mean(actual_likes == predicted_likes) * 100 # Calculate Accuracy for Like Predictions
 
-    print(f"Prediction Accuracy for 'Like' (Ratings ≥ {LIKE_THRESHOLD}): {like_accuracy:.2f}%")
+    print(f"Mean Squared Error: {mse:.4f}")
+    print(f"R² Score: {r2:.4f}\n")  # Closer to 1 means better model performance
+    print(f"Predicted Rating: {predicted_rating:.2f}")
+    print(f"Prediction Accuracy (Ratings ≥ {LIKE_THRESHOLD}): {like_accuracy:.2f}%")
     print('-' * 100)
 
 def get_valid_user_id(ratings):
