@@ -26,14 +26,12 @@ done = False
 
 def load_data():
     """Loads movies and ratings datasets from CSV files."""
-
     movies = pd.read_csv(MOVIES_FILE)
     ratings = pd.read_csv(RATINGS_FILE)
     return movies, ratings
 
 def compute_user_stats(ratings):
     """Computes user-specific features: average rating given and number of ratings per user."""
-
     user_stats = ratings.groupby('userId').agg(
         user_avg_rating=('rating', 'mean'),
         user_num_ratings=('rating', 'count')
@@ -42,7 +40,6 @@ def compute_user_stats(ratings):
 
 def encode_genres(movies):
     """One-hot encodes the genres column and returns updated movies DataFrame."""
-
     movies['genres'] = movies['genres'].str.split('|')
 
     encoded_genres_list = []
@@ -72,7 +69,6 @@ def encode_genres(movies):
 
 def compute_movie_stats(ratings):
     """Computes average rating and number of ratings for each movie."""
-
     movie_stats = ratings.groupby('movieId').agg(
         avg_rating=('rating', 'mean'),  # Average rating per movie
         num_ratings=('rating', 'count') # Number of ratings per movie
@@ -82,7 +78,6 @@ def compute_movie_stats(ratings):
 
 def extract_year(title):
     """Extracts the release year from the movie title without using regex."""
-
     parts = title.strip().split(' ')  # Split by spaces
     if parts and parts[-1].startswith('(') and parts[-1].endswith(')'):  # Check if last part is in parentheses
         year_str = parts[-1][1:-1]  # Remove parentheses
@@ -92,7 +87,6 @@ def extract_year(title):
 
 def merge_movie_data(movies, movie_stats):
     """Merges computed rating statistics into the movies dataset and extracts movie release year."""
-
     movies['year'] = movies['title'].apply(extract_year) # 'year' is now a new column in the movies DataFrame
 
     movies = movies.merge(movie_stats, on="movieId", how="left")
@@ -235,7 +229,6 @@ def process_and_output(user_id, movie_id, model_choice, X, y, movies, ratings):
 
 def get_valid_user_id(ratings):
     """Prompt user for a valid User ID until a correct one is entered."""
-
     while True:
         try:
             user_id = int(input("Enter User ID: ").strip())
@@ -248,7 +241,6 @@ def get_valid_user_id(ratings):
 
 def get_valid_movie_id(movies):
     """Prompt user for a valid Movie ID until a correct one is entered."""
-
     while True:
         try:
             movie_id = int(input("Enter Movie ID: ").strip())
@@ -261,7 +253,6 @@ def get_valid_movie_id(movies):
 
 def repl():
     """Main method which allows the user to interact and input with program and provide inputs/outputs."""
-
     X, y, movies, ratings = prepare_movie_data()
 
     print('-' * 100)
